@@ -6,7 +6,7 @@
 
     <!-- 频道标签 -->
     <van-tabs class="channel-tabs" v-model="activeChannelIndex">
-      <van-tab title="标签 1">
+      <van-tab title="推荐">
         <!--
           下拉刷新组件
           isLoading 控制下拉的 loading 状态
@@ -35,9 +35,9 @@
           </van-list>
         </van-pull-refresh>
       </van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
+      <van-tab title="热门话题">内容 2</van-tab>
+      <van-tab title="科技动态">内容 3</van-tab>
+      <van-tab title="区块">内容 4</van-tab>
       <van-tab title="标签 5">内容 5</van-tab>
       <van-tab title="标签 6">内容 6</van-tab>
       <van-tab title="标签 7">内容 7</van-tab>
@@ -48,9 +48,9 @@
     <!-- 底部导航 -->
     <van-tabbar route>
       <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="search" to="/qa">问答</van-tabbar-item>
-      <van-tabbar-item icon="friends-o" to="/video">视频</van-tabbar-item>
-      <van-tabbar-item icon="setting-o" to="my">我的</van-tabbar-item>
+      <van-tabbar-item icon="comment-o" to="/qa">问答</van-tabbar-item>
+      <van-tabbar-item icon="video-o" to="/video">视频</van-tabbar-item>
+      <van-tabbar-item icon="user-o" to="my">我的</van-tabbar-item>
     </van-tabbar>
     <!-- /底部导航 -->
   </div>
@@ -79,15 +79,13 @@ export default {
         }
         // 加载状态结束
         this.loading = false
-
         // 数据全部加载完成
-        if (this.list.length >= 40) {
+        if (this.list.length >= 50) {
           // 所有数据加载完毕，设置 finished 为 true
           this.finished = true
         }
       }, 1000)
     },
-
     onRefresh () {
       setTimeout(() => {
         this.pullRefreshLoading = false

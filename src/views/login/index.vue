@@ -2,7 +2,6 @@
   <div class="login-wrap">
     <!-- 头部 -->
     <van-nav-bar title="登录"/>
-
     <!-- 表单 -->
     <form>
       <van-cell-group>
@@ -40,51 +39,43 @@
 
 <script>
 import { login } from '@/api/user'
-
 export default {
   name: 'LoginIndex',
   data () {
     return {
-      user: { // 提交登录的表单数据
-        mobile: '18801185985',
+      user: { // 提交登录大表单数据
+        mobile: '13642191259',
         code: '123456'
       },
-      loginLoading: false, // 控制登录按钮的 loading 状态
+      loginLoading: false, // 控制点登录按钮大 loading 状态
       errors: {
         mobile: '',
         code: ''
       }
     }
   },
-
   methods: {
-    async handleLogin () {
+    async handleLOgin () {
       try {
-        // 发送请求之前，校验表单数据，校验通过，才进行登录
+        // 发送请求之前，校验表单数据，校验通过，进行登录
         const { mobile, code } = this.user
         const errors = this.errors
-
         if (mobile.length) {
           errors.mobile = ''
         } else {
           errors.mobile = '手机号不能为空'
           return
         }
-
         if (code.length) {
           errors.code = ''
         } else {
           errors.code = '验证码不能为空'
           return
         }
-
         // 表单验证通过，发送请求，loading 加载
         this.loginLoading = true
-
         const data = await login(this.user)
-
         this.$store.commit('setUser', data)
-
         /**
          * 这里先简单粗暴的跳转到首页
          * 真实的业务要处理成跳转到之前过来的的页面
