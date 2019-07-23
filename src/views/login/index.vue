@@ -11,7 +11,7 @@
           required
           clearable
           label="手机号"
-          placeholder=请输入手机号
+          placeholder="请输入手机号"
           v-validate="'required'"
           name="mobile"
           :error-message="errors.first('mobile')"
@@ -49,8 +49,8 @@ export default {
   data () {
     return {
       user: { // 提交登录的表单数据
-        mobile: '13642191259',
-        code: '123456'
+        mobile: '18801185985',
+        code: '246810'
       },
       loginLoading: false, // 控制登录按钮的 loading 状态
       myErrors: {
@@ -86,9 +86,17 @@ export default {
          * 这里先简单粗暴的跳转到首页
          * 真实的业务要处理成跳转到之前过来的的页面
          */
-        this.$router.push({
-          name: 'home'
-        })
+        // this.$router.push({
+        //   name: 'home'
+        // })
+
+        // 回到之前的页面：
+        // 1. 简单粗暴的 back()，如果是手机 App 完全没问题
+        // 2. 使用 url 记住来源路径
+        // this.$router.back()
+
+        const redirect = this.$route.query.redirect || '/'
+        this.$router.push(redirect)
       } catch (err) {
         this.$toast.fail('登录失败')
       }
